@@ -10,8 +10,8 @@ const WorkExperience = ({handleChange}) => {
       <label className="sidebar-label-container">
         <input
           type="radio"
-          name="test"
-          id="test"
+          name="test2"
+          id="test2"
           value=""
           onChange={handleChange}
         />
@@ -22,13 +22,13 @@ const WorkExperience = ({handleChange}) => {
         handleChange={handleChange}
         value="Internship"
         title="Internship"
-        name="test"
+        name="test2"
       />
       <InputField
         handleChange={handleChange}
         value="work remotely"
         title="Work remotely"
-        name="test"
+        name="test2"
       />
       
       

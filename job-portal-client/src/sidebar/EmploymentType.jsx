@@ -10,8 +10,8 @@ const EmploymentType = ({handleChange}) => {
       <label className="sidebar-label-container">
         <input
           type="radio"
-          name="test"
-          id="test"
+          name="test3"
+          id="test3"
           value=""
           onChange={handleChange}
         />
@@ -22,19 +22,19 @@ const EmploymentType = ({handleChange}) => {
         handleChange={handleChange}
         value="Full-time"
         title="Full-time"
-        name="test"
+        name="test3"
       />
       <InputField
         handleChange={handleChange}
         value="Temporary"
         title="Temporary"
-        name="test"
+        name="test3"
       />
       <InputField
         handleChange={handleChange}
         value="Part-time"
         title="Part-time"
-        name="test"
+        name="test3"
       />
       
       
