@@ -10,8 +10,7 @@ const Banner = ({query,handleInputChange}) => {
         Find your <span className="text-blue">new job</span> today
       </h1>
       <p className="text-lg text-black/70 mb-8">
-        Thousands of jobs in the computer, engineering and technology sectors
-        are waiting for you.
+      Connecting Talent with Opportunity: Post Jobs, Apply with Ease!
       </p>
       <form>
         <div className="flex justify-start md:flex-row flex-col md:gap-0 gap-4">

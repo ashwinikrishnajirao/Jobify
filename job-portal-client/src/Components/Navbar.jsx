@@ -34,7 +34,7 @@ const Navbar = () => {
                             fillOpacity="0.4" />
                         <circle cx="16.9857" cy="17.4857" r="12.0143" fill="#3575E2" />
                     </svg>{" "}
-                    <span>Job Portal</span> </a>
+                    <span>Jobify</span> </a>
                 <ul className='hidden md:flex gap-12'>
                     {
                         navItems.map(({ path, title }) => (
