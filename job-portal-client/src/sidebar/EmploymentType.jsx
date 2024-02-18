@@ -26,14 +26,21 @@ const EmploymentType = ({handleChange}) => {
       />
       <InputField
         handleChange={handleChange}
-        value="Temporary"
-        title="Temporary"
+        value="Part-time"
+        title="Part-time"
         name="test3"
       />
       <InputField
         handleChange={handleChange}
-        value="Part-time"
-        title="Part-time"
+        value="Temporary"
+        title="Temporary"
+        name="test3"
+      />
+      
+      <InputField
+        handleChange={handleChange}
+        value="Remote work"
+        title="Remote work"
         name="test3"
       />
       

@@ -127,10 +127,13 @@ const CreateJob = () => {
                 {...register("experienceLevel")}
                 className="create-job-input"
               >
-                <option value="">Choose your experience</option>
-                <option value="NoExperience">No Experience</option>
+                <option value="">Choose experience level</option>
+                <option value="Fresher">Fresher</option>
                 <option value="Internship">Internship</option>
-                <option value="Work remotely">Work remotely</option>
+                <option value="0-2 years">0-2 years</option>
+                <option value="2-5 years">2-5 years</option>
+                <option value="more than 5 years">more than 5 years</option>
+                
               </select>
             </div>
           </div>
@@ -164,10 +167,12 @@ const CreateJob = () => {
                 {...register("employmentType")}
                 className="create-job-input"
               >
-                <option value="">Choose your experience</option>
+                <option value="">Choose Employment type</option>
                 <option value="Full-time">Full-time</option>
                 <option value="Part-time">Part-time</option>
                 <option value="Temporary">Temporary</option>
+                <option value="Remote work">Remote work</option>
+
               </select>
             </div>
           </div>
