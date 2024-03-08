@@ -34,7 +34,17 @@ const JobDetails = () => {
       <div className="max-w-screen-2xl container mx-auto xl:px-24 l:px-24 px-4">
         <PageHeader title={"Single Job Page"} path={"single job"} />
         <h2>JobDetails: {id}</h2>
-        <h1>{job.jobTitle}</h1>
+        <div className="bg-black/55 rounded text-white justify-center px-4 ">
+        <h1>Title: {job.jobTitle}</h1>
+        <h1>Company: {job.companyName}</h1>
+        <h1>Salary Range: {job.minPrice}-{job.maxPrice}k</h1>
+        <h1>Location: {job.jobLocation}</h1>
+        <h1>Posting Date: {job.postingDate}</h1>
+        <h1>Experience Level: {job.experiencelevel}</h1>
+        <h1>Employement Type: {job.employementType}</h1>
+        <h1>Roles and Responsibilities: {job.description}</h1>
+        <h1>Posted By: {job.postedBy}</h1>
+        </div>
       </div>
       <div className="max-w-screen-2xl mt-4 mx-auto xl:px-24 l:px-24 px-4">
         <h1 className="text-blue text-lg">Upload Your Resume To Apply</h1>
