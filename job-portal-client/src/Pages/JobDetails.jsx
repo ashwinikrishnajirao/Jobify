@@ -34,7 +34,7 @@ const JobDetails = () => {
       <div className="max-w-screen-2xl container mx-auto xl:px-24 l:px-24 px-4">
         <PageHeader title={"Single Job Page"} path={"single job"} />
         <h2>JobDetails: {id}</h2>
-        <div className="bg-black/55 rounded text-white justify-center px-4 ">
+        <div className="bg-black/55 rounded text-white justify-center px-4 py-2">
         <h1>Title: {job.jobTitle}</h1>
         <h1>Company: {job.companyName}</h1>
         <h1>Salary Range: {job.minPrice}-{job.maxPrice}k</h1>
@@ -50,7 +50,7 @@ const JobDetails = () => {
         <h1 className="text-blue text-lg">Upload Your Resume To Apply</h1>
         <input type="file" accept=".pdf" onChange={handleFileChange} />
 
-        {pdfFile && (
+        {pdfFile && ( 
           <div>
             <p>Selected PDF: {pdfFile.name}</p>
             <button
