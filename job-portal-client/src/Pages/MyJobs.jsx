@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
-
-  
-
-    
 
 const MyJobs = () => {
   const [jobs, setJobs] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const auth = getAuth(); // Initialize the Firebase auth object
+  const navigate = useNavigate();
 
   //set current page
   const [currentPage, setCurrentPage] = useState(1);
@@ -27,6 +24,10 @@ const MyJobs = () => {
           setJobs(data);
           setIsLoading(false);
         });
+    }
+    if(!(user)){
+alert("Please login to see your jobs!")
+navigate("/login")
     }
   }, [auth, searchText]);
 
