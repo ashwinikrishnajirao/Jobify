@@ -13,12 +13,6 @@ const Login = () => {
     const navigate = useNavigate(); // Use navigate hook
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                // User is signed in, navigate to the home page
-                navigate('/');
-            }
-        });
         // Check if the user was redirected from the Google sign-in redirect
         getRedirectResult(auth)
             .then((result) => {
@@ -30,7 +24,6 @@ const Login = () => {
             .catch((error) => {
                 setErrorMessage(error.message);
             });
-            return () => unsubscribe();
         }, [auth, navigate]);
     
 
