@@ -26,8 +26,6 @@ const Login = () => {
             });
     }, [auth, navigate]);
 
-  
-
     const handleSignInWithEmailAndPassword = async (e) => {
         e.preventDefault();
         try {
@@ -44,7 +42,6 @@ const Login = () => {
         try {
             const provider = new GoogleAuthProvider();
             await signInWithRedirect(auth, provider); // Redirect user to Google sign-in page
-            navigate('/')
         } catch (error) {
             setErrorMessage(error.message);
         }
@@ -84,18 +81,25 @@ const Login = () => {
                         />
                     </div>
                     {errorMessage && <div className="text-red-500 text-sm mb-4">{errorMessage}</div>}
-                    <div className="flex justify-between items-center">
+                    <div className="flex justify-center">
                         <button type="submit" className="bg-blue text-white py-2 px-4 rounded hover:bg-blue-600" >
                             {isSigningIn ? 'Logging In...' : 'Log In'}
                         </button>
-                        
-
-                        <button type="button" onClick={handleSignInWithGoogle} className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600">
-                            Continue with Google
-                        </button>
                     </div>
+                    <div className="mt-4 flex flex-col items-center">
+                    <div className="flex items-center mb-2">
+                        <div className="border-b border-gray-400 w-1/4"></div>
+                        <div className="mx-2 text-gray-500">or</div>
+                        <div className="border-b border-gray-400 w-1/4"></div>
+                    </div>
+                    <button type="button" onClick={handleSignInWithGoogle} className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600">
+                        Continue with Google
+                    </button>
+                </div>
+                        
+                   
                     <div className="text-center mt-4">
-                        Don't have an account? <Link to="/signup" className="text-blue-500 hover:underline">Sign Up</Link>
+                        Don't have an account? <Link to="/signup" className="text-blue hover:underline">Sign Up</Link>
                     </div>
                 </form>
             </main>

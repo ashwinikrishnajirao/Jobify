@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import app from '../firebase/firebase.config';
 import { getAuth } from "firebase/auth";
+import { Link } from 'react-router-dom';
 
 const SignUp = () => {
     const [email, setEmail] = useState('');
@@ -86,6 +87,9 @@ const SignUp = () => {
                         >
                             {isSigningUp ? 'Signing Up...' : 'Sign Up'}
                         </button>
+                    </div>
+                    <div className="text-center mt-4">
+                        Already have an account? <Link to="/signup" className="text-blue hover:underline">Login Here</Link>
                     </div>
                 </form>
             </main>
