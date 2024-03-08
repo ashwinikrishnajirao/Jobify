@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { signInWithEmailAndPassword, signInWithRedirect, GoogleAuthProvider, getRedirectResult } from 'firebase/auth';
 import app from '../firebase/firebase.config';
 import { getAuth } from "firebase/auth";
 
@@ -11,6 +11,22 @@ const Login = () => {
     const [isSigningIn, setIsSigningIn] = useState(false);
     const auth = getAuth(app);
     const navigate = useNavigate(); // Use navigate hook
+
+    useEffect(() => {
+        // Check if the user was redirected from the Google sign-in redirect
+        getRedirectResult(auth)
+            .then((result) => {
+                if (result && result.user) {
+                    // User successfully signed in with Google, redirect to home page
+                    navigate('/');
+                }
+            })
+            .catch((error) => {
+                setErrorMessage(error.message);
+            });
+    }, [auth, navigate]);
+
+  
 
     const handleSignInWithEmailAndPassword = async (e) => {
         e.preventDefault();
@@ -27,8 +43,8 @@ const Login = () => {
     const handleSignInWithGoogle = async () => {
         try {
             const provider = new GoogleAuthProvider();
-            await signInWithPopup(auth, provider);
-            navigate('/'); // Redirect to home page after successful login
+            await signInWithRedirect(auth, provider); // Redirect user to Google sign-in page
+            navigate('/')
         } catch (error) {
             setErrorMessage(error.message);
         }
