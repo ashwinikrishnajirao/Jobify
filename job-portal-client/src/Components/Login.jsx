@@ -86,10 +86,12 @@ const Login = () => {
                     {errorMessage && <div className="text-red-500 text-sm mb-4">{errorMessage}</div>}
                     <div className="flex justify-between items-center">
                         <button type="submit" className="bg-blue text-white py-2 px-4 rounded hover:bg-blue-600" >
-                            {isSigningIn ? 'Signing In...' : 'Sign In'}
+                            {isSigningIn ? 'Logging In...' : 'Log In'}
                         </button>
+                        
+
                         <button type="button" onClick={handleSignInWithGoogle} className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600">
-                            Sign In with Google
+                            Continue with Google
                         </button>
                     </div>
                     <div className="text-center mt-4">
