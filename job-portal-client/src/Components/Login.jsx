@@ -33,6 +33,7 @@ const Login = () => {
             setIsSigningIn(true);
             await signInWithEmailAndPassword(auth, email, password);
             navigate('/'); // Redirect to home page after successful login
+            
         } catch (error) {
             setErrorMessage(error.message);
             setIsSigningIn(false);

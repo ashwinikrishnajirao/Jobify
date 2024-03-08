@@ -1,14 +1,29 @@
-import React, { useState } from 'react'
-import { NavLink, Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react'
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { FaBarsStaggered, FaXmark } from "react-icons/fa6";
-// import * as React from "react";
-// import { Link } from "react-router-dom";
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 
 const Navbar = () => {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const navigate = useNavigate();
+    const auth = getAuth();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const handleMenuToggler = () => {
         setIsMenuOpen(!isMenuOpen)
     }
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            setIsLoggedIn(!!user);
+        });
+    }, []);
+    const handleLogout = async () => {
+        try {
+            await signOut(auth);
+            navigate('/login'); // Redirect to login page after successful logout
+        } catch (error) {
+            // Handle errors here
+        }
+    };
     const navItems = [
         { path: "/", title: "Start a Search" },
         { path: "/my-job", title: "My Jobs" },
@@ -50,9 +65,15 @@ const Navbar = () => {
                     }
                 </ul>
                 <div className='text-base text-primary font-medium space-x-5 hidden lg:block'>
+            {isLoggedIn ? (
+                <button onClick={handleLogout} className='py-2 px-5 border rounded'>Log out</button>
+            ) : (
+                <>
                     <Link to="/login" className='py-2 px-5 border rounded'>Log in</Link>
                     <Link to="/signUp" className='py-2 px-5 border rounded bg-blue text-white'>Sign up</Link>
-                </div>
+                </>
+            )}
+        </div>
 
                 {/*mobile menu*/}
 
