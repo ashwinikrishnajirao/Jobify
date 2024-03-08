@@ -1,9 +1,29 @@
-import React from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import CreatableSelect from "react-select/creatable";
+import { getAuth,onAuthStateChanged } from "firebase/auth";
+import app from '../firebase/firebase.config';
+
+
+    
+
 
 const CreateJob = () => {
+  const auth = getAuth(app);
+    const [email, setEmail] = useState('');
+
+    useEffect(() => {
+      const unsubscribe = auth.onAuthStateChanged(user => {
+        if (user) {
+            setEmail(user.email);
+        } else {
+            setEmail('');
+        }
+    });
+
+    return () => unsubscribe();
+}, [auth]);
+
   const [selectedOption, setSelectedOption] = useState(null);
   const {
     register,
@@ -192,12 +212,13 @@ const CreateJob = () => {
           <div className="w-full">
             <label className="block mb-2 text-lg">Job Posted By</label>
             <input
-              type="email"
-              placeholder="your email"
-              {...register("postedBy")}
-              className="create-job-input"
+                type="email"
+                value={email} // Set the value to the user's email
+                readOnly // Make the input read-only to prevent users from changing it
+                className="create-job-input"
+                {...register("postedBy")}
             />
-          </div>
+        </div>
 
           <input
             type="submit"
