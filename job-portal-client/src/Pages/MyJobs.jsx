@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import app from '../firebase/firebase.config';
 
 const MyJobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -8,14 +9,17 @@ const MyJobs = () => {
   const [isLoading, setIsLoading] = useState(true);
   const auth = getAuth(); // Initialize the Firebase auth object
   const navigate = useNavigate();
+  
 
   //set current page
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
 
-  useEffect(() => {
+  useEffect(() => { 
     const user = auth.currentUser; // Get the current user
-    if (user) {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+     
+  if (user) {
       setIsLoading(true);
       const email = user.email; // Get the email from the current user object
       fetch(`http://localhost:5000/myJobs/${email}`)
@@ -29,6 +33,9 @@ const MyJobs = () => {
 alert("Please login to see your jobs!")
 navigate("/login")
     }
+  });
+    
+  return () => unsubscribe();
   }, [auth, searchText]);
 
   //pagination
@@ -64,7 +71,7 @@ navigate("/login")
     fetch(`http://localhost:5000/job/${id}`, {
       method: "DELETE",
     })
-      .then((res) => res.json)
+      .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged === true) {
           alert("Job Deleted successfully!!!");

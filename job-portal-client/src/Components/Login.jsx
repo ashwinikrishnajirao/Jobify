@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { signInWithEmailAndPassword, signInWithRedirect, GoogleAuthProvider, getRedirectResult } from 'firebase/auth';
+import { signInWithEmailAndPassword, signInWithRedirect, GoogleAuthProvider, getRedirectResult, onAuthStateChanged } from 'firebase/auth';
 import app from '../firebase/firebase.config';
 import { getAuth } from "firebase/auth";
 
@@ -13,6 +13,12 @@ const Login = () => {
     const navigate = useNavigate(); // Use navigate hook
 
     useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // User is signed in, navigate to the home page
+                navigate('/');
+            }
+        });
         // Check if the user was redirected from the Google sign-in redirect
         getRedirectResult(auth)
             .then((result) => {
@@ -24,7 +30,9 @@ const Login = () => {
             .catch((error) => {
                 setErrorMessage(error.message);
             });
-    }, [auth, navigate]);
+            return () => unsubscribe();
+        }, [auth, navigate]);
+    
 
     const handleSignInWithEmailAndPassword = async (e) => {
         e.preventDefault();
