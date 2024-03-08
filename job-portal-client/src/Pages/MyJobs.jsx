@@ -1,24 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getAuth } from "firebase/auth";
+
+  
+
+    
 
 const MyJobs = () => {
   const [jobs, setJobs] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const auth = getAuth(); // Initialize the Firebase auth object
 
   //set current page
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
 
   useEffect(() => {
-    setIsLoading(true);
-    fetch(`http://localhost:5000/myJobs/ashwinikrishnajirao@gmail.com`)
-      .then((res) => res.json())
-      .then((data) => {
-        setJobs(data);
-        setIsLoading(false);
-      });
-  }, [searchText]);
+    const user = auth.currentUser; // Get the current user
+    if (user) {
+      setIsLoading(true);
+      const email = user.email; // Get the email from the current user object
+      fetch(`http://localhost:5000/myJobs/${email}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setJobs(data);
+          setIsLoading(false);
+        });
+    }
+  }, [auth, searchText]);
 
   //pagination
   const indexOfLastItem = currentPage * itemsPerPage;
