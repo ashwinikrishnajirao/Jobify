@@ -135,11 +135,12 @@ const CreateJob = () => {
             <div className="lg:w-1/2 w-full">
               <label className="block mb-2 text-lg">Job Posting Date</label>
               <input
-                type="date"
-                placeholder="Ex: 2024-02-03"
-                {...register("postingDate")}
-                className="create-job-input"
-              />
+      type="date"
+      defaultValue={new Date().toISOString().split('T')[0]} // Set default value to today's date
+      readOnly // Make the input field readonly
+      {...register("postingDate")}
+      className="create-job-input"
+    />
             </div>
             <div className="lg:w-1/2 w-full">
               <label className="block mb-2 text-lg">Experience Level</label>

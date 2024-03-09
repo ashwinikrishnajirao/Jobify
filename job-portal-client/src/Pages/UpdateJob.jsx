@@ -122,6 +122,7 @@ const UpdateJob = () => {
               <label className="block mb-2 text-lg">Job Posting Date</label>
               <input
                 type="date"
+                readOnly
                 defaultValue={postingDate}
                 placeholder="Ex: 2024-02-03"
                 {...register("postingDate")}
@@ -198,6 +199,7 @@ const UpdateJob = () => {
             <input
               type="email"
               placeholder="your email"
+              readOnly
               defaultValue={postedBy}
               {...register("postedBy")}
               className="create-job-input"

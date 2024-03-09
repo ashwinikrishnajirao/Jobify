@@ -174,7 +174,7 @@ navigate("/login")
                           ${job.minPrice} -${job.maxPrice}
                         </td>
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                          <button>
+                          <button className="bg-blue py-2 px-6 text-white rounded-sm">
                             <Link to={`/edit-job/${job?._id}`}>Edit</Link>
                           </button>
                         </td>
