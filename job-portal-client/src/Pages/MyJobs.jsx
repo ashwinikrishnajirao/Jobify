@@ -68,7 +68,7 @@ navigate("/login")
 
   const handleDelete = (id) => {
     // console.log(id);
-    fetch(`http://localhost:5000/job/${id}`, {
+    fetch(`https://jobify-backend-tvz7.onrender.com/job/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

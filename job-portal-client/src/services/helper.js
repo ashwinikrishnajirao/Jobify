@@ -1,0 +1,1 @@
+export const BASE_URL = "https://jobify-backend-tvz7.onrender.com"
