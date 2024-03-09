@@ -15,7 +15,7 @@ const Home = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch("http://localhost:5000/all-jobs")
+    fetch("https://jobify-backend-tvz7.onrender.com/all-jobs")
       .then((res) => res.json())
       .then((data) => {
         // console.log(data)
