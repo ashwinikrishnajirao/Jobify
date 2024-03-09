@@ -22,7 +22,7 @@ const MyJobs = () => {
   if (user) {
       setIsLoading(true);
       const email = user.email; // Get the email from the current user object
-      fetch(`http://localhost:5000/myJobs/${email}`)
+      fetch(`https://jobify-backend-tvz7.onrender.com/myJobs/${email}`)
         .then((res) => res.json())
         .then((data) => {
           setJobs(data);
