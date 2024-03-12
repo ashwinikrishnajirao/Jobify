@@ -23,7 +23,7 @@ const router = createBrowserRouter([
         path: "edit-job/:id",
         element: <UpdateJob />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/all-jobs/${params.id}`),
+          fetch(`https://jobify-backend-tvz7.onrender.com/all-jobs/${params.id}`),
       },
       {
         path: "/login",
